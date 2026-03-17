@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LifecycleOS — Employee Lifecycle Management</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <div class="logo-icon"><i class="fas fa-infinity"></i></div>
+          <span class="logo-text">LifecycleOS</span>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">OVERVIEW</div>
+          <a class="nav-item active" data-page="dashboard" onclick="navigateTo('dashboard')">
+            <i class="fas fa-th-large"></i><span>Dashboard</span>
+          </a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">LIFECYCLE</div>
+          <a class="nav-item" data-page="onboarding" onclick="navigateTo('onboarding')">
+            <i class="fas fa-user-plus"></i><span>Onboarding</span>
+            <span class="nav-badge">4</span>
+          </a>
+          <a class="nav-item" data-page="offboarding" onclick="navigateTo('offboarding')">
+            <i class="fas fa-user-minus"></i><span>Offboarding</span>
+            <span class="nav-badge warn">2</span>
+          </a>
+          <a class="nav-item" data-page="directory" onclick="navigateTo('directory')">
+            <i class="fas fa-address-book"></i><span>Directory</span>
+          </a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">IT OPERATIONS</div>
+          <a class="nav-item" data-page="identity" onclick="navigateTo('identity')">
+            <i class="fas fa-fingerprint"></i><span>Identity & Access</span>
+          </a>
+          <a class="nav-item" data-page="devices" onclick="navigateTo('devices')">
+            <i class="fas fa-laptop"></i><span>Device Management</span>
+          </a>
+          <a class="nav-item" data-page="saas" onclick="navigateTo('saas')">
+            <i class="fas fa-cloud"></i><span>SaaS Apps</span>
+          </a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">AUTOMATION</div>
+          <a class="nav-item" data-page="automations" onclick="navigateTo('automations')">
+            <i class="fas fa-robot"></i><span>Workflows</span>
+            <span class="nav-badge success">5</span>
+          </a>
+          <a class="nav-item" data-page="tickets" onclick="navigateTo('tickets')">
+            <i class="fas fa-ticket-alt"></i><span>Tickets</span>
+            <span class="nav-badge warn">4</span>
+          </a>
+          <a class="nav-item" data-page="runbooks" onclick="navigateTo('runbooks')">
+            <i class="fas fa-book"></i><span>Runbooks</span>
+          </a>
+        </div>
+        <div class="nav-section">
+          <div class="nav-section-title">COMPLIANCE</div>
+          <a class="nav-item" data-page="compliance" onclick="navigateTo('compliance')">
+            <i class="fas fa-shield-alt"></i><span>SOC 2 Audit</span>
+          </a>
+        </div>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="avatar">JC</div>
+          <div class="user-info">
+            <div class="user-name">Jonathan C.</div>
+            <div class="user-role">IT Admin</div>
+          </div>
+          <i class="fas fa-ellipsis-v"></i>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Top Bar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="menu-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+          <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search employees, tickets, apps..." id="globalSearch" onkeyup="handleSearch(this.value)">
+          </div>
+        </div>
+        <div class="topbar-right">
+          <button class="topbar-btn" title="Run Automation"><i class="fas fa-play-circle"></i></button>
+          <button class="topbar-btn" title="Notifications"><i class="fas fa-bell"></i><span class="notif-dot"></span></button>
+          <button class="topbar-btn" title="Settings"><i class="fas fa-cog"></i></button>
+        </div>
+      </header>
+
+      <!-- Page Content -->
+      <div class="page-content" id="pageContent">
+        <!-- Dashboard loads here by default -->
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal Overlay -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3 id="modalTitle">Modal</h3>
+        <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
